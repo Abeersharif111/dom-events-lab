@@ -3,46 +3,56 @@
 /*-------------------------------- Variables --------------------------------*/
 let num1=null;
 let num2=null;
-
+let number =null
 let button = null;
+let operator =null;
 let value = null;
 let result = null;
 /*------------------------ Cached Element References ------------------------*/
 const display = document.querySelector('.display')
-const buttons = document.querySelectorAll('.button')
-console.log(buttons)
+//const buttons = document.querySelectorAll('.button')
+const numbers = document.querySelectorAll('.number') //querySelectorAll is udes to select all numbers
+const operators = document.querySelectorAll('.operator')
+const equal = document.querySelector('.equals')
+//console.log(buttons)
 const calculator = document.querySelector('#calculator');
 const row = document.querySelector('.row')
-
+console.log(operators)
 /*----------------------------- Event Listeners -----------------------------*/
 
-buttons.forEach ( button => {
-  button.addEventListener('click', (buttonClickedHandler) )} ) // ..working
+//buttons.forEach ( button => {
+ // button.addEventListener('click', (buttonClickedHandler))} ) // ..working
   //=> {
     // This log is for testing purposes to verify we're getting the correct value
    // console.log(event.target.innerText); ....working
     // Future logic to capture the button's value would go here
        
-  
+  numbers.forEach( number =>
+   {number.addEventListener('click',buttonClickedHandler)})
 
+operators.forEach( operator =>
+   {operator.addEventListener('click',buttonClickedHandler)})
+
+equal.addEventListener('click',buttonClickedHandler)
 
 
 
 /*-------------------------------- Functions --------------------------------*/
 function buttonClickedHandler( event ) 
 {
-let value =event.target.textContent ; // give the content of the clicked button to the value ...not working
-console.log(event.target.textContent)  // to check the function in consle ....working
+let value =event.target.textcontent
+ // give the content of the clicked button to the value ...not working
+console.log(event.target.textcontent)  // to check the function in consle ....working
 
 
 
- //  if (event.target.classList.contains('number')) // if number is pressed ... not working
- //   { holdNumber(value) 
- //      return }
+   if (event.target.classList.contains('number')) // if number is pressed ... not working
+    { holdNumber(value) 
+       return }
 
 
- if (value >='0' && value<='9')   // if a number is pressed    ..... working
-  { holdNumber(value) }           // call function holdNumber
+ //if (value >='0' && value<='9')   // if a number is pressed    ..... working
+  //{ holdNumber(value) }           // call function holdNumber
 
 
  // if (event.target.innerText === '*')  // if operator is pressed ....not working
@@ -54,7 +64,7 @@ if ( value === '+')
     { 
       //operator = value
       //value = null 
-      operator(value)
+      operator1(value)
      }
 
      
@@ -82,7 +92,7 @@ function holdNumber(value)
     else                   // if have a digit previously
        {  num1 = num1 + value                 // hold the next digit
         }
-        display.textcontent= num1
+        display.textContent= num1
     
     
         { if ( num2 === null)
@@ -91,12 +101,12 @@ function holdNumber(value)
        {  num1 = num2 + value                 // hold the next digit
           
         }
-        display.textcontent= num2
+        display.innertext= num2
  }
 }
 
 
-function operator() 
+function operator1() 
        {
          if (num1===null )    // if still no numbers pressed
          return;
@@ -109,7 +119,7 @@ function operator()
 function calculate( )
      { 
       result = Number(num1.value) + Number(num2.value)
-      display.textContent = result
+      display.innertext = result
      }
 
 
@@ -119,5 +129,5 @@ function calculate( )
     num1= null
     num2= null
   //  operatopr= null
-    display.textContent = null
+    display.innertext = null
 } 
